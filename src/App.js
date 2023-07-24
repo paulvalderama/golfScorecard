@@ -99,7 +99,7 @@ function App() {
                 : null
               }
             </div>
-            <video src={video} width="800" height="400" controls />
+            <video src={video} width="400" height="400" controls />
     </div>
   );
 }
