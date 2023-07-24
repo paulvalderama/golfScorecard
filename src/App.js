@@ -8,6 +8,8 @@ import hole6 from './hole6.png'
 import hole7 from './hole7.png'
 import hole8 from './hole8.png'
 import hole9 from './hole9.png'
+import video from './IMG_7431.MOV'
+
 // import { useState } from 'react/cjs/react.production.min';
 import { useCallback, useState } from 'react';
 function App() {
@@ -97,7 +99,7 @@ function App() {
                 : null
               }
             </div>
-              
+            <video src={video} width="800" height="400" controls />
     </div>
   );
 }
