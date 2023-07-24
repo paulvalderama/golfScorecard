@@ -12,7 +12,7 @@ import hole9 from './hole9.png'
 import { useCallback, useState } from 'react';
 function App() {
   const [activeHole, setActiveHole] = useState(0);
-
+  const [back9, setBack9] = useState(false);
 
   const front9Arr = [
     {id: 1, txt: '1', black: '519 Yards', gold: '495 Yards', silver: '467 Yards', par: '5', img: hole1},
@@ -56,9 +56,11 @@ function App() {
             ))}          
           </div>
           <div className="back9">          
-          {back9Arr.map((item) => (
+          { !back9 ? null : 
+          back9Arr.map((item) => (
               <button onClick={activateHole(item.id)}>{item.txt}</button>
-          ))}          
+          ))
+          }          
           </div>
         </div>
             <div className='activeHole'>
