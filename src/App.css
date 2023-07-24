@@ -10,6 +10,8 @@
   background-color: #282c34;
   width: 390px;
   height: 844px;
+  margin-left: 500px;
+  /* justify-content: center; */
 }
 .App-header {  
   flex-direction: column;
