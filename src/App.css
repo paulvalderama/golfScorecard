@@ -1,38 +1,92 @@
+.activeHole{
+  background-color: #586070;
+  height: 145vw;
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+}
+.App-header {  
   flex-direction: column;
+  font-family: "Consolas";
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.App-header h1{
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.back9 button {
+  /* display: grid;
+    float: left; */
+    background-color: #586070;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
+    margin-right: 5px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    /* background-image: url(./images/button_left.png); */
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+}
+.child{
+  display: inline-block;
+  float: left;
+}
+.front9 button {
+  /* display: grid;
+    float: left; */
+    background-color: #586070;
+    border-radius: 15px;
+    height: 50px;
+    width: 50px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    /* background-image: url(./images/button_left.png); */
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+}
+.holeDetails {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.holeImage{
+  height: 225px;
+  margin-left: 50px;
+  margin-right: 30px;
+  border-radius: 5px;
+}
+.holeNotes{
+  margin-top: 40px;
+  text-align: center;
+}
+.holeSelection {
+  background-color: #282c34; 
+}
+.holeTitle{
+  margin-top: 10px;
+  text-align: center;
+}
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: #586070;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  width: 110px;
+  margin-left: 4px;
+}
+.parent {
+  margin-bottom: 15px;
 }
