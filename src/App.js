@@ -56,7 +56,7 @@ function App() {
         <div className='holeSelection'>
           <div className="front9">
             {front9Arr.map((item) => (
-              <button onClick={activateHole(item.id)}>{item.txt}</button>
+              <button style={{'fontWeight': 'bold', 'fontSize': '25px'}} onClick={activateHole(item.id)}>{item.txt}</button>
             ))}          
           </div>
           <div className="back9">          
