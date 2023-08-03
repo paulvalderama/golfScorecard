@@ -13,8 +13,9 @@ import video from './IMG_7431.MOV'
 // import { useState } from 'react/cjs/react.production.min';
 import { useCallback, useState } from 'react';
 function App() {
-  const [activeHole, setActiveHole] = useState(0);
+  const [activeHole, setActiveHole] = useState(1);
   // const [back9, setBack9] = useState(false);
+  const [navigbarHoles, setNavigbarHoles] = useState(false);
 
   const front9Arr = [
     {id: 1, txt: '1', black: '519 Yards', gold: '495 Yards', silver: '467 Yards', par: '5', img: hole1},
@@ -43,6 +44,7 @@ function App() {
     (id) => () => {
       console.log('hole activated', id)
       setActiveHole(parseInt(id));
+      setNavigbarHoles(false);
     }, [],
   )
 
@@ -55,7 +57,18 @@ function App() {
         </header>
         <div className='holeSelection'>
           <div className="front9">
-            {front9Arr.map((item) => (
+            { !navigbarHoles ? 
+              <>
+                <button onClick={() => {setNavigbarHoles(true)}} style={{'width': '55px'}}>
+                  <div style={{'float': 'left'}}>#{activeHole ?                   
+                    <div style={{'fontSize': '50px', 'float': 'right'}}>{activeHole}</div> :  <div style={{'fontSize': '50px', 'float': 'right'}}>1</div>}
+                  </div>
+                </button>                
+              </>
+              : 
+
+            
+            front9Arr.map((item) => (
               <button style={{'fontWeight': 'bold', 'fontSize': '25px'}} onClick={activateHole(item.id)}>{item.txt}</button>
             ))}          
           </div>
@@ -68,9 +81,9 @@ function App() {
           </div>
         </div>
             <div className='activeHole'>
-              { activeHole ? 
+              {activeHole ? 
                 (<>
-                  <div className='holeTitle' style={{marginTop: '20px'}}>Hole {activeHole}</div>
+                  {/* <div className='holeTitle' style={{marginTop: '20px'}}>Hole {activeHole}</div> */}
                   <div className='holeDetails'>
                     <div className='parent'>
                       <div className='child'>
