@@ -61,7 +61,7 @@ function App() {
               <>
                 <button onClick={() => {setNavigbarHoles(true)}} style={{'width': '55px'}}>
                   <div style={{'float': 'left'}}>#{activeHole ?                   
-                    <div style={{'fontSize': '40px', 'float': 'right'}}>{activeHole}</div> :  <div style={{'fontSize': '40px', 'float': 'right'}}>1</div>}
+                    <div style={{'fontSize': '30px', 'float': 'right'}}>{activeHole}</div> :  <div style={{'fontSize': '30px', 'float': 'right'}}>1</div>}
                   </div>
                 </button>                
               </>
