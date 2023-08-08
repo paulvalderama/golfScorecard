@@ -14,6 +14,8 @@ import video from './IMG_7431.MOV'
 import { useCallback, useState } from 'react';
 function App() {
   const [activeHole, setActiveHole] = useState(1);
+  const [activeHoleDescDetails, setActiveHoleDescDetails] = useState(false);
+  const [activeHoleNotes, setActiveHoleNotes] = useState(false);
   // const [back9, setBack9] = useState(false);
   const [navigbarHoles, setNavigbarHoles] = useState(false);
 
@@ -53,7 +55,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Poplar Creek Digital Scorecard</h1>
+        <h3>Poplar Creek Digital Scorecard</h3>
         </header>
         <div className='holeSelection'>
           <div className="front9">
@@ -80,38 +82,63 @@ function App() {
           }          
           </div>
         </div>
-            <div className='activeHole'>
-              {activeHole ? 
-                (<>
-                  {/* <div className='holeTitle' style={{marginTop: '20px'}}>Hole {activeHole}</div> */}
-                  <div className='holeDetails'>
-                    <div className='parent'>
-                      <div className='child'>
-                        <div>Black: {front9Arr[activeHole - 1]['black']}</div>
-                        <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
-                        <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
-                        <div>Par: {front9Arr[activeHole - 1]['par']}</div>
-                        <div>Score: <input type='text'></input></div>
-                      </div>  
-                      <div className='child'>
-                        <img className='holeImage' src={front9Arr[activeHole - 1]['img']} alt='hole1'/>
+        {activeHole ?
+              (<>
+                <div className='activeHole'>            
+                    <img className='activeHoleImg' src={front9Arr[activeHole - 1]['img']} alt='hole1'/>                                 
+                    <div className='holeDesc'>
+                      { activeHoleDescDetails ? 
+                        <div className='holeDescDetails'>
+                          <div>Black: {front9Arr[activeHole - 1]['black']}</div>
+                          <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
+                          <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
+                          <div>Par: {front9Arr[activeHole - 1]['par']}</div>
+                          <div>Score: <input type='text'></input></div>
+                          <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false)}}>X</button>
                         </div>
+                        : <button className='holeDetailsBtn' onClick={() => {setActiveHoleDescDetails(true)}}>Hole Details</button>
+                      }
                     </div>
-                    <div className='holeNotes'>Notes</div>
-                    <div>Tee: <input type='text'></input></div>
-                    <div>Approach:<input type='text'></input></div>
-                    <div>Pitch: <input type='text'></input></div>
-                    <div>Chip: <input type='text'></input></div>
-                    <div>Putt: <input type='text'></input></div>
-                  </div>
-                </>
-                )
-                
-                // : activeHole === 2 ? 
-                // 'Hole 2'
+                    <div clasName='holeNotes'>
+                      {activeHoleNotes ? 
+                          <div className='styleHoleNotes'>
+                            <div className='holeNotesInput'>
+                                <div className='holeTitleNotes'>Notes</div>
+                                <div>Tee: <input type='text'></input></div>
+                                <div>Approach:<input type='text'></input></div>
+                                <div>Pitch: <input type='text'></input></div>
+                                <div>Chip: <input type='text'></input></div>
+                                <div>Putt: <input type='text'></input></div>
+                                <button className='closeHoleNotesBtn' onClick={() => {setActiveHoleNotes(false)}}>X</button>
+                            </div>
+                          </div>
+                        : <button className='holeNotesBtn' onClick={() => {setActiveHoleNotes(true)}}>Hole Notes</button>
+                      }
+                    </div>
+                    {/* <div className='holeDetails'>
+                      <div className='parent'>
+                        <div className='child'>
+                          <div>Black: {front9Arr[activeHole - 1]['black']}</div>
+                          <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
+                          <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
+                          <div>Par: {front9Arr[activeHole - 1]['par']}</div>
+                          <div>Score: <input type='text'></input></div>
+                        </div>  
+                        <div className='child'>
+                          <img className='holeImage' src={front9Arr[activeHole - 1]['img']} alt='hole1'/>
+                        </div>
+                      </div>
+                      {/* <div className='holeNotes'>Notes</div> */}
+                      {/* <div>Tee: <input type='text'></input></div>
+                      <div>Approach:<input type='text'></input></div>
+                      <div>Pitch: <input type='text'></input></div>
+                      <div>Chip: <input type='text'></input></div>
+                      <div>Putt: <input type='text'></input></div> */}
+                    {/* </div>                   */}
+                    </div>
+                </>)                
                 : null
-              }
-            </div>
+              }            
             <video src={video} width="400" height="400" controls />
     </div>
   );
