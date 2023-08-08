@@ -16,6 +16,7 @@ function App() {
   const [activeHole, setActiveHole] = useState(1);
   const [activeHoleDescDetails, setActiveHoleDescDetails] = useState(false);
   const [activeHoleNotes, setActiveHoleNotes] = useState(false);
+  const [activeVideo, setActiveVideo] = useState(false);
   // const [back9, setBack9] = useState(false);
   const [navigbarHoles, setNavigbarHoles] = useState(false);
 
@@ -93,7 +94,7 @@ function App() {
                           <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
                           <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
                           <div>Par: {front9Arr[activeHole - 1]['par']}</div>
-                          <div>Score: <input type='text'></input></div>
+                          <div>Score: <input className='scoreInput' type='text'></input></div>
                           <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false)}}>X</button>
                         </div>
                         : <button className='holeDetailsBtn' onClick={() => {setActiveHoleDescDetails(true)}}>Hole Details</button>
@@ -135,11 +136,18 @@ function App() {
                       <div>Chip: <input type='text'></input></div>
                       <div>Putt: <input type='text'></input></div> */}
                     {/* </div>                   */}
+                      {activeVideo ? 
+                          <div className='videoContainer'>
+                            <button className='closeVideoBtn' onClick={() => {setActiveVideo(false)}}>X</button>
+                            <video className='videoStyle' src={video} width="400" height="400" controls />                          
+                          </div>
+                        :
+                          <button className='videoBtn' onClick={() => {setActiveVideo(true)}}>Shot of the Day</button>
+                      }
                     </div>
                 </>)                
                 : null
-              }            
-            <video src={video} width="400" height="400" controls />
+              }                        
     </div>
   );
 }

@@ -21,6 +21,21 @@
   background-color: #586070;
   color: white;
 }
+.closeVideoBtn{
+  border-radius: 10px;
+  background-color: #586070;
+  color: white;
+}
+input[type=text]{
+  border-radius: 5px;
+}
+.videoContainer{
+  position:absolute;
+  bottom: -180px;
+}
+.videoStyle{
+  border-radius: 10px;
+}
 .holeDesc{
   position: absolute;
   top: 10px;
@@ -37,6 +52,15 @@
   background-color: #586070;
   border-radius: 10px;
   height: 40px;  
+}
+.videoBtn{
+  position: absolute;
+  bottom: -190px;
+  left: 10px;
+  font-weight: bold;
+  background-color: #586070;
+  border-radius: 10px;
+  height: 40px; 
 }
 .holeNotes{
   position: absolute;
@@ -78,8 +102,7 @@
   height: 844px;
   margin-left: 500px; */
   /* justify-content: center; */
-  margin-top: 0px;
-  width: max-content;
+  margin-top: 0px;  
 }
 .App-header {  
   flex-direction: column;
