@@ -32,6 +32,7 @@ input[type=text]{
 .videoContainer{
   position:absolute;
   bottom: -60px;
+  left: 10px;
 }
 .videoStyle{
   border-radius: 10px;
