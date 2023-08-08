@@ -52,15 +52,17 @@ input[type=text]{
   background-color: #586070;
   border-radius: 10px;
   height: 40px;  
+  color: white;
 }
 .videoBtn{
   position: absolute;
-  bottom: -40px;
+  bottom: -30px;
   left: 10px;
   font-weight: bold;
   background-color: #586070;
   border-radius: 10px;
   height: 40px; 
+  color: white;
 }
 .holeNotes{
   position: absolute;
@@ -88,6 +90,7 @@ input[type=text]{
   border-radius: 10px;
   height: 40px; 
   margin-top: 6px;  
+  color: white;
 }
 .styleHoleNotes{
   margin: 5px;
@@ -153,6 +156,7 @@ input[type=text]{
     text-align: center;
     line-height: 50px;
     text-decoration: none;
+    color: white;
 }
 .holeDetails {
   margin-top: 10px;
