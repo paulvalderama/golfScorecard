@@ -189,6 +189,7 @@ input[type=text] {
   font-size: 20px;
   width: 110px;
   margin-left: 4px;
+  float: right;
 }
 .parent {
   margin-bottom: 15px;
