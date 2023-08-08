@@ -9,7 +9,7 @@
 .activeHoleImg{
   width: 100%;
   z-index: 0;
-  height: 780px;
+  height: 700px;
 }
 .closeHoleDescDetailsBtn{
   border-radius: 10px;
@@ -147,7 +147,7 @@ input[type=text]{
     width: 50px;
     margin-top: 5px;
     margin-right: 5px;
-    margin-left: 15px;
+    margin-left: 20px;
     margin-bottom: 5px;
     /* background-image: url(./images/button_left.png); */
     text-align: center;
