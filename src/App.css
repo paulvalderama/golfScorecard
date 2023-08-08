@@ -9,7 +9,7 @@
 .activeHoleImg{
   width: 100%;
   z-index: 0;
-  height: 700px;
+  height: 650px;
 }
 .closeHoleDescDetailsBtn{
   border-radius: 10px;
@@ -31,7 +31,7 @@ input[type=text]{
 }
 .videoContainer{
   position:absolute;
-  bottom: -180px;
+  bottom: -60px;
 }
 .videoStyle{
   border-radius: 10px;
@@ -55,7 +55,7 @@ input[type=text]{
 }
 .videoBtn{
   position: absolute;
-  bottom: -190px;
+  bottom: -40px;
   left: 10px;
   font-weight: bold;
   background-color: #586070;
