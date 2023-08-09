@@ -59,8 +59,8 @@ input[type=text]{
 }
 .scorecardTotal{
   position: relative;
-  bottom: 500px;
-  left: 100px;
+  bottom: 480px;
+  left: 140px;
   width: 240px;
   background-color:#282c34;
   color: white;
