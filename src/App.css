@@ -15,6 +15,9 @@
   border-radius: 10px;
   background-color: #586070;
   color: white;
+  position: absolute;
+  bottom: -15px;
+  left: -8px;
 }
 .closeHoleNotesBtn{
   border-radius: 10px;
@@ -22,6 +25,11 @@
   color: white;
 }
 .closeVideoBtn{
+  border-radius: 10px;
+  background-color: #586070;
+  color: white;
+}
+.closeScorecardBtn{
   border-radius: 10px;
   background-color: #586070;
   color: white;
@@ -49,6 +57,19 @@ input[type=text]{
   margin: 5px;
   color: white;
 }
+.scorecardTotal{
+  position: relative;
+  bottom: 350px;
+  left: 220px;
+  width: 140px;
+  background-color:#282c34;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+.setInputName{
+  color: white;
+}
 .holeDetailsBtn{
   font-weight: bold;
   background-color: #586070;
@@ -66,11 +87,27 @@ input[type=text]{
   height: 40px; 
   color: white;
 }
+.name{
+  color: white;
+  text-align: left;
+  margin-left: 5px;
+  font-weight: bold;
+  margin-bottom: 5px
+}
+.scorecardBtn{
+  position: absolute;
+  bottom: -30px;
+  right: 10px;
+  font-weight: bold;
+  background-color: #586070;
+  border-radius: 10px;
+  height: 40px; 
+  color: white;
+}
 .holeNotes{
   position: absolute;
   top: 10px;
-  right: 10px;
-  background-color: #282c34;
+  right: 10px;  
   border-radius: 10px;
   margin: 5px;
   padding: 5px; 
@@ -87,7 +124,8 @@ input[type=text]{
 }
 .holeNotesBtn{
   position:absolute;
-  top: 10px;
+  top: -5px;
+  width: 100px;
   right: 10px;
   font-weight: bold;
   background-color: #586070;

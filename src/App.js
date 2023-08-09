@@ -11,15 +11,26 @@ import hole9 from './hole9.png'
 import video from './IMG_7431.MOV'
 
 // import { useState } from 'react/cjs/react.production.min';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 function App() {
   const [activeHole, setActiveHole] = useState(1);
   const [activeHoleDescDetails, setActiveHoleDescDetails] = useState(false);
   const [activeHoleNotes, setActiveHoleNotes] = useState(false);
   const [activeVideo, setActiveVideo] = useState(false);
+  const [activeScorecard, setActiveScorecard] = useState(false);
   // const [back9, setBack9] = useState(false);
   const [navigbarHoles, setNavigbarHoles] = useState(false);
-
+  const [score, setScore] = useState({1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: ''});
+  const [inputScore, setInputScore] = useState('');
+  const [scorecard, setScorecard] = useState([])
+  const [name, setName] = useState('');
+  const [nameSet, setNameSet] = useState(false);
+  const [inputName, setInputName] = useState('');
+  
+  const handleName = (value) => {
+    setName(value);
+    setNameSet(true);
+  }
   const front9Arr = [
     {id: 1, txt: '1', black: '519 Yards', gold: '495 Yards', silver: '467 Yards', par: '5', img: hole1},
     {id: 2, txt: '2', black: '421 Yards', gold: '403 Yards', silver: '372 Yards', par: '4', img: hole2},
@@ -42,7 +53,24 @@ function App() {
     {id: 17, txt: '17'},
     {id: 18, txt: '18'},
   ]
-
+  const handleChange = (currentScore, hole) => {            
+    setScore(prevState => ({
+      ...prevState,
+      [hole]: currentScore
+    }))
+    
+    // if(hole === 9){
+    //   handleScorecard()
+    //   // setScorecard([name, score])
+    // }
+  }
+  // const handleScorecard = () => {
+  //   setScorecard([name, score])
+  // }
+  useEffect(() => {
+    setScorecard([name, score])
+  }, [name, score])
+  console.log(scorecard, 'scorecard set')
   const activateHole = useCallback(
     (id) => () => {
       console.log('hole activated', id)
@@ -54,12 +82,13 @@ function App() {
   const back9 = false;
 
   return (
+    
     <div className="App">
       <header className="App-header">
         <h3>Poplar Creek Digital Scorecard</h3>
         </header>
         <div className='holeSelection'>
-          <div className="front9">
+          <div className="front9">            
             { !navigbarHoles ? 
               <>
                 <button onClick={() => {setNavigbarHoles(true)}} style={{'width': '55px'}}>
@@ -68,20 +97,29 @@ function App() {
                   </div>
                 </button>                
               </>
-              : 
-
-            
+              :             
             front9Arr.map((item) => (
               <button style={{'fontWeight': 'bold', 'fontSize': '25px'}} onClick={activateHole(item.id)}>{item.txt}</button>
             ))}          
           </div>
           <div className="back9">          
-          { !back9 ? null : 
-          back9Arr.map((item) => (
-              <button onClick={activateHole(item.id)}>{item.txt}</button>
-          ))
-          }          
+            { !back9 ? null : 
+            back9Arr.map((item) => (
+                <button onClick={activateHole(item.id)}>{item.txt}</button>
+            ))
+            }          
           </div>
+          
+            { nameSet ?               
+                  <div className='name'>
+                    {name}
+                  </div>              
+                :
+                <div className='setInputName'>
+                  Name: <input className='setName' value={inputName} onChange={(e) => {setInputName(e.target.value)}}></input>
+                  <button onClick={() => {handleName(inputName); setInputName('');}}>Submit</button>
+                </div>
+              }          
         </div>
         {activeHole ?
               (<>
@@ -94,13 +132,18 @@ function App() {
                           <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
                           <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
                           <div>Par: {front9Arr[activeHole - 1]['par']}</div>
-                          <div>Score: <input className='scoreInput' type='text'></input></div>
+                          <div>Score: {score[activeHole]}</div>
+                          <div>
+                            <input className='scoreInput' value={inputScore} onChange={(e) => {setInputScore(e.target.value)}}></input>
+                            <button onClick={() => {handleChange(inputScore, activeHole); setInputScore(''); }}>Submit</button>
+                          </div>
+                          
                           <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false)}}>X</button>
                         </div>
                         : <button className='holeDetailsBtn' onClick={() => {setActiveHoleDescDetails(true)}}>Hole Details</button>
                       }
                     </div>
-                    <div clasName='holeNotes'>
+                    <div className='holeNotes'>
                       {activeHoleNotes ? 
                           <div className='styleHoleNotes'>
                             <div className='holeNotesInput'>
@@ -143,6 +186,23 @@ function App() {
                           </div>
                         :
                           <button className='videoBtn' onClick={() => {setActiveVideo(true)}}>Shot of the Day</button>
+                      }
+                      {activeScorecard ? 
+                        <div className='scorecardTotal'>Scorecard 
+                          <div>Name: {scorecard[0]}</div>
+                          <div>Hole 1: {scorecard[1][1]}</div>                         
+                          <div>Hole 2: {scorecard[1][2]}</div>                         
+                          <div>Hole 3: {scorecard[1][3]}</div>                         
+                          <div>Hole 4: {scorecard[1][4]}</div>                         
+                          <div>Hole 5: {scorecard[1][5]}</div>                         
+                          <div>Hole 6: {scorecard[1][6]}</div>                         
+                          <div>Hole 7: {scorecard[1][7]}</div>                         
+                          <div>Hole 8: {scorecard[1][8]}</div>                         
+                          <div>Hole 9: {scorecard[1][9]}</div>                                                   
+                          <button className='closeScorcardBtn' onClick={() => {setActiveScorecard(false)}}>X</button>
+                        </div>
+                        :
+                        <button className="scorecardBtn" onClick={() => {setActiveScorecard(true)}}>Scorecard</button>
                       }
                     </div>
                 </>)                
