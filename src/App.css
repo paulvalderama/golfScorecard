@@ -59,14 +59,13 @@ input[type=text]{
 }
 .scorecardTotal{
   position: relative;
-  bottom: 350px;
-  left: 220px;
+  bottom: 550px;
+  left: 120px;
   width: 240px;
   background-color:#282c34;
   color: white;
   padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 10px;  
 }
 .setInputName{
   color: white;
