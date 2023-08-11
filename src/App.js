@@ -15,7 +15,7 @@ import { useCallback, useEffect, useState } from 'react';
 function App() {
   const [activeHole, setActiveHole] = useState(1);
   const [activeHoleDescDetails, setActiveHoleDescDetails] = useState(false);
-  const [activeHoleNotes, setActiveHoleNotes] = useState(false);
+  const [activeLocation, setActiveLocation] = useState(false);
   const [activeVideo, setActiveVideo] = useState(false);
   const [activeScorecard, setActiveScorecard] = useState(false);
   // const [back9, setBack9] = useState(false);
@@ -26,6 +26,10 @@ function App() {
   const [name, setName] = useState('');
   const [nameSet, setNameSet] = useState(false);
   const [inputName, setInputName] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+  const [inputNote, setInputNote] = useState('');
+  const [note, setNote] = useState({1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: ''});
   
   const handleName = (value) => {
     setName(value);
@@ -58,12 +62,19 @@ function App() {
       ...prevState,
       [hole]: currentScore
     }))
+  }
+  const handleNoteChange = (currentNote, hole) => {            
+    setNote(prevState => ({
+      ...prevState,
+      [hole]: currentNote
+    }))
+  } 
     
     // if(hole === 9){
     //   handleScorecard()
     //   // setScorecard([name, score])
     // }
-  }
+  
   // const handleScorecard = () => {
   //   setScorecard([name, score])
   // }
@@ -79,8 +90,20 @@ function App() {
     }, [],
   )
 
-  const back9 = false;
+  useEffect(() => {
+    if("geolocation" in navigator){ 
+      console.log('available')
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      })
+    } else {
+      console.log('not available')
+    }
+  })
 
+  const back9 = false;
+console.log(note, 'note being tracked')
   return (
     
     <div className="App">
@@ -113,6 +136,8 @@ function App() {
             { nameSet ?               
                   <div className='name'>
                     {name}
+                    {latitude}
+                    {longitude}
                   </div>              
                 :
                 <div className='setInputName'>
@@ -137,48 +162,34 @@ function App() {
                             <input className='scoreInput' value={inputScore} onChange={(e) => {setInputScore(e.target.value)}}></input>
                             <button onClick={() => {handleChange(inputScore, activeHole); setInputScore(''); }}>Submit</button>
                           </div>
-                          
+                          <div>
+                            <div>Note: {note[activeHole]}</div>
+                            Enter notes: <div><input className='noteInput' value={inputNote} onChange={(e) => {setInputNote(e.target.value)}}></input>
+                            <button onClick={() => {handleNoteChange(inputNote, activeHole); setInputNote(''); }}>Submit</button></div>
+                          </div>
                           <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false)}}>X</button>
                         </div>
                         : <button className='holeDetailsBtn' onClick={() => {setActiveHoleDescDetails(true)}}>Hole Details</button>
                       }
                     </div>
-                    <div className='holeNotes'>
-                      {activeHoleNotes ? 
-                          <div className='styleHoleNotes'>
-                            <div className='holeNotesInput'>
-                                <div className='holeTitleNotes'>Notes</div>
-                                <div>Tee: <input type='text'></input></div>
-                                <div>Approach:<input type='text'></input></div>
-                                <div>Pitch: <input type='text'></input></div>
-                                <div>Chip: <input type='text'></input></div>
-                                <div>Putt: <input type='text'></input></div>
-                                <button className='closeHoleNotesBtn' onClick={() => {setActiveHoleNotes(false)}}>X</button>
-                            </div>
+                    <div className='holeLocation'>
+                      {activeLocation ?
+                      <div className="styleLocation">
+                        <div className='latitudeStyle'>latitude: {latitude}</div> 
+                        <div className='longitudeStyle'>Longitude: {longitude}</div>                      
+                          {/* // <div className='styleHoleNotes'>
+                          //   <div className='holeNotesInput'>
+                          //       <div className='holeTitleNotes'>Notes</div>
+                          //       <div>Tee: <input type='text'></input></div>
+                          //       <div>Approach:<input type='text'></input></div>
+                          //       <div>Pitch: <input type='text'></input></div>
+                          //       <div>Chip: <input type='text'></input></div>
+                          //       <div>Putt: <input type='text'></input></div> */}
+                          <button className='closeHoleLocationBtn' onClick={() => {setActiveLocation(false)}}>X</button>
                           </div>
-                        : <button className='holeNotesBtn' onClick={() => {setActiveHoleNotes(true)}}>Hole Notes</button>
+                        : <button className='holeLocationBtn' onClick={() => {setActiveLocation(true)}}>Location</button>
                       }
-                    </div>
-                    {/* <div className='holeDetails'>
-                      <div className='parent'>
-                        <div className='child'>
-                          <div>Black: {front9Arr[activeHole - 1]['black']}</div>
-                          <div>Gold: {front9Arr[activeHole - 1]['gold']}</div>
-                          <div>Silver: {front9Arr[activeHole - 1]['silver']}</div>
-                          <div>Par: {front9Arr[activeHole - 1]['par']}</div>
-                          <div>Score: <input type='text'></input></div>
-                        </div>  
-                        <div className='child'>
-                          <img className='holeImage' src={front9Arr[activeHole - 1]['img']} alt='hole1'/>
-                        </div>
-                      </div>
-                      {/* <div className='holeNotes'>Notes</div> */}
-                      {/* <div>Tee: <input type='text'></input></div>
-                      <div>Approach:<input type='text'></input></div>
-                      <div>Pitch: <input type='text'></input></div>
-                      <div>Chip: <input type='text'></input></div>
-                      <div>Putt: <input type='text'></input></div> */}
-                    {/* </div>                   */}
+                    </div>                    
                       {activeVideo ? 
                           <div className='videoContainer'>
                             <button className='closeVideoBtn' onClick={() => {setActiveVideo(false)}}>X</button>
@@ -188,17 +199,45 @@ function App() {
                           <button className='videoBtn' onClick={() => {setActiveVideo(true)}}>Shot of the Day</button>
                       }
                       {activeScorecard ? 
-                        <div className='scorecardTotal'>Scorecard 
-                          <div>Name: {scorecard[0]}</div>
-                          <div>Hole 1: {scorecard[1][1]}</div>                         
-                          <div>Hole 2: {scorecard[1][2]}</div>                         
-                          <div>Hole 3: {scorecard[1][3]}</div>                         
-                          <div>Hole 4: {scorecard[1][4]}</div>                         
-                          <div>Hole 5: {scorecard[1][5]}</div>                         
-                          <div>Hole 6: {scorecard[1][6]}</div>                         
-                          <div>Hole 7: {scorecard[1][7]}</div>                         
-                          <div>Hole 8: {scorecard[1][8]}</div>                         
-                          <div>Hole 9: {scorecard[1][9]}</div>                                                   
+                        <div className='scorecardTotal'>
+                          <div className='scorecardTitle'>Scorecard</div>
+                          <div className='scorecardName'>Name: {scorecard[0]}</div>                      
+                          <div>
+                            <div style={{display:'inline'}}>Hole 1:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][1]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[1]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 2:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][2]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[2]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 3:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][3]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[3]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 4:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][4]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[4]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 5:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][5]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[5]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 6:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][6]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[6]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 7:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][7]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[7]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 8:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][8]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[8]}</div>
+                          </div>
+                          <div>
+                            <div style={{display:'inline'}}>Hole 9:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][9]}</div></div>
+                            <div style={{fontSize: '12px'}}>{note[9]}</div>
+                          </div>                          
                           <button className='closeScorcardBtn' onClick={() => {setActiveScorecard(false)}}>X</button>
                         </div>
                         :
@@ -207,7 +246,8 @@ function App() {
                     </div>
                 </>)                
                 : null
-              }                        
+              }       
+              
     </div>
   );
 }
