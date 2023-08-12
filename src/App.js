@@ -183,9 +183,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
           
             { nameSet ?               
                   <div className='name'>
-                    {name}
-                    {latitude}
-                    {longitude}
+                    {name}                    
                   </div>              
                 :
                 <div className='setInputName'>
