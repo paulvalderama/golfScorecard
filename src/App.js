@@ -78,6 +78,52 @@ function App() {
   // const handleScorecard = () => {
   //   setScorecard([name, score])
   // }
+
+
+  var rad = function(x) {
+    return x * Math.PI / 180;
+  };
+  
+  var getDistance = function(lat1, lat2, lon1, lon2) {
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(lat2 - lat1);
+    var dLong = rad(lon2 - lon1);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(rad(lat1)) * Math.cos(rad(lat2)) *
+      Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d; // returns the distance in meter
+  };
+  
+// Driver code   
+
+let latLonPinPlacement = {
+  1: [37.5828603, -122.3217053],
+  2: [37.5831345, -122.3261496],
+  3: [37.5847188, -122.3275172],
+  4: [37.5826476, -122.3246655],
+  5: [37.583497, -122.3245086],
+  6: [37.5854141, -122.3268675],
+  7: [37.5843865, -122.3243522],
+  8: [37.5824263, -122.3223044],
+  9: [37.5859935, -122.3241067],
+};
+
+let lat1 = latitude;
+// let lat1 = 37.5860402
+let lat2 = latLonPinPlacement[activeHole][0]
+
+let lon1 = longitude;
+// let lon1 = -122.325313
+let lon2 = latLonPinPlacement[activeHole][1]
+let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
+
+
+// yardsToPin = yardsToPin;
+
+
+
   useEffect(() => {
     setScorecard([name, score])
   }, [name, score])
@@ -175,8 +221,10 @@ console.log(note, 'note being tracked')
                     <div className='holeLocation'>
                       {activeLocation ?
                       <div className="styleLocation">
-                        <div className='latitudeStyle'>latitude: {latitude}</div> 
-                        <div className='longitudeStyle'>Longitude: {longitude}</div>                      
+                        <div style={{paddingBottom: '10px'}}>Yards to Pin</div>
+                        {/* <div className='latitudeStyle'>latitude: {latitude}</div> 
+                        <div className='longitudeStyle'>Longitude: {longitude}</div>                       */}
+                        <div>{yardsToPin} Yards</div>
                           {/* // <div className='styleHoleNotes'>
                           //   <div className='holeNotesInput'>
                           //       <div className='holeTitleNotes'>Notes</div>
