@@ -38,6 +38,12 @@
   bottom: 150px;
   left: 45px;
 }
+.scoreSubmitBtn{
+  display: inline;
+}
+.scoreInput{
+  width: 50px;
+}
 .closeHoleDescDetailsBtn{
   border-radius: 10px;
   background-color: #586070;

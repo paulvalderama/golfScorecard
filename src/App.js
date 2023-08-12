@@ -206,7 +206,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                           <div>Score: {score[activeHole]}</div>
                           <div>
                             <input className='scoreInput' value={inputScore} onChange={(e) => {setInputScore(e.target.value)}}></input>
-                            <button onClick={() => {handleChange(inputScore, activeHole); setInputScore(''); }}>Submit</button>
+                            <button className='scoreSubmitBtn' onClick={() => {handleChange(inputScore, activeHole); setInputScore(''); }}>Submit</button>
                           </div>
                           <div>
                             <div>Note: {note[activeHole]}</div>
