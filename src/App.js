@@ -9,6 +9,7 @@ import hole7 from './hole7.png'
 import hole8 from './hole8.png'
 import hole9 from './hole9.png'
 import video from './IMG_7431.MOV'
+import popAd from './Poplar-Creek-Logo-Transparent.png'
 
 // import { useState } from 'react/cjs/react.production.min';
 import { useCallback, useEffect, useState } from 'react';
@@ -30,6 +31,7 @@ function App() {
   const [longitude, setLongitude] = useState('');
   const [inputNote, setInputNote] = useState('');
   const [note, setNote] = useState({1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: ''});
+  const [ad, setAd] = useState(false);
   
   const handleName = (value) => {
     setName(value);
@@ -149,7 +151,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
   })
 
   const back9 = false;
-console.log(note, 'note being tracked')
+  console.log(ad, 'what is ad right now')
   return (
     
     <div className="App">
@@ -213,7 +215,7 @@ console.log(note, 'note being tracked')
                             Enter notes: <div><input className='noteInput' value={inputNote} onChange={(e) => {setInputNote(e.target.value)}}></input>
                             <button onClick={() => {handleNoteChange(inputNote, activeHole); setInputNote(''); }}>Submit</button></div>
                           </div>
-                          <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false)}}>X</button>
+                          <button className='closeHoleDescDetailsBtn' onClick={() => {setActiveHoleDescDetails(false); setAd(true);}}>X</button>
                         </div>
                         : <button className='holeDetailsBtn' onClick={() => {setActiveHoleDescDetails(true)}}>Hole Details</button>
                       }
@@ -233,14 +235,14 @@ console.log(note, 'note being tracked')
                           //       <div>Pitch: <input type='text'></input></div>
                           //       <div>Chip: <input type='text'></input></div>
                           //       <div>Putt: <input type='text'></input></div> */}
-                          <button className='closeHoleLocationBtn' onClick={() => {setActiveLocation(false)}}>X</button>
+                          <button className='closeHoleLocationBtn' onClick={() => {setActiveLocation(false); setAd(true);}}>X</button>
                           </div>
                         : <button className='holeLocationBtn' onClick={() => {setActiveLocation(true)}}>Location</button>
                       }
                     </div>                    
                       {activeVideo ? 
                           <div className='videoContainer'>
-                            <button className='closeVideoBtn' onClick={() => {setActiveVideo(false)}}>X</button>
+                            <button className='closeVideoBtn' onClick={() => {setActiveVideo(false); setAd(true);}}>X</button>
                             <video className='videoStyle' src={video} width="400" height="400" controls />                          
                           </div>
                         :
@@ -286,14 +288,25 @@ console.log(note, 'note being tracked')
                             <div style={{display:'inline'}}>Hole 9:<div style={{display:'inline', paddingLeft:'15px'}}>{scorecard[1][9]}</div></div>
                             <div style={{fontSize: '12px'}}>{note[9]}</div>
                           </div>                          
-                          <button className='closeScorcardBtn' onClick={() => {setActiveScorecard(false)}}>X</button>
+                          <button className='closeScorcardBtn' onClick={() => {setActiveScorecard(false); setAd(true);}}>X</button>
                         </div>
                         :
                         <button className="scorecardBtn" onClick={() => {setActiveScorecard(true)}}>Scorecard</button>
                       }
-                    </div>
+                        <div className='ad'>
+                          { ad ? 
+                            <>
+                              <div className='adTitle'>Place Your Ad Here</div>
+                              <img className='adImg' src={popAd} alt='adImg'/>                                 
+                              <button className='closeAdBtn' onClick={() => {setAd(false)}}>X</button>
+                            </>
+                            :
+                            <></>
+                          }
+                      </div>
+                    </div>                    
                 </>)                
-                : null
+                : null                  
               }       
               
     </div>
