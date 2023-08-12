@@ -237,7 +237,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                           //       <div>Putt: <input type='text'></input></div> */}
                           <button className='closeHoleLocationBtn' onClick={() => {setActiveLocation(false); setAd(true);}}>X</button>
                           </div>
-                        : <button className='holeLocationBtn' onClick={() => {setActiveLocation(true)}}>Location</button>
+                        : <button className='holeLocationBtn' onClick={() => {setActiveLocation(true)}}>Yards to Pin</button>
                       }
                     </div>                    
                       {activeVideo ? 
