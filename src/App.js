@@ -62,6 +62,13 @@ function App() {
     {id: 17, txt: '17'},
     {id: 18, txt: '18'},
   ]
+  const menuList = [
+    {item: 'burger', price: 10},
+    {item: 'hotdog', price: 10},
+    {item: 'water', price: 2},
+    {item: 'soda', price: 2},
+    {item: 'liquor', price: 10},
+  ]
   const handleChange = (currentScore, hole) => {            
     setScore(prevState => ({
       ...prevState,
@@ -210,7 +217,7 @@ const updateYardsToPin = () => {
                 </div>
               }          
         </div>
-        {activeHole ?
+        {!orderFood && activeHole ?
               (<>
                 <div className='activeHole'>            
                     <img className='activeHoleImg' src={front9Arr[activeHole - 1]['img']} alt='hole1'/>                                 
@@ -263,13 +270,7 @@ const updateYardsToPin = () => {
                           </div>
                         :
                           <button className='videoBtn' onClick={() => {setActiveVideo(true)}}>Shot of the Day</button>
-                      }
-                      {orderFood ?
-                          <div>
-                            <button className='closeOrderFoodBtn' onClick={() => {setOrderFood(false); setAd(true);}}>X</button>
-                          </div>
-                          : <button className='orderFoodBtn' onClick={() => {setOrderFood(true)}}>Order Food</button>
-                      }
+                      }                      
                       {activeScorecard ? 
                         <div className='scorecardTotal'>
                           <div className='scorecardTitle'>Scorecard</div>
@@ -326,11 +327,32 @@ const updateYardsToPin = () => {
                             <></>
                           }
                       </div>
-                    </div>                    
+                      <button className='orderFoodBtn' onClick={() => {setOrderFood(true); console.log('ordering food')}}>Order Food</button>
+                    </div>                                     
                 </>)                
-                : <>
-                  Order Food
-                </>                  
+                : 
+                orderFood ?
+                          <div>
+                            <button className='closeOrderFoodBtn' onClick={() => {setOrderFood(false); setAd(true);}}>Back To Scorecard</button>
+                              <div className='foodMenuList'>
+                                <div className='foodList'>
+                                  {menuList.map((menu) => (
+                                    <div> <button style={{'fontWeight': 'bold', 'fontSize': '25px'}} 
+                                    
+                                  // onClick={
+                                  //   activateHole(item.id)
+                                  // }
+                                    >{menu.item}</button>                                
+                                    <div className='priceForItem'>${menu.price}</div>
+                                    </div>
+                                  ))
+                                  
+                                  }          
+                                  </div>
+                              </div>
+                          </div>
+                          :
+                          <></>
               }       
               
     </div>

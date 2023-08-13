@@ -43,8 +43,46 @@
 }
 .orderFoodBtn{
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 25px;
+  left: 150px;
+}
+.closeOrderFoodBtn{
+  /* position: absolute; */
+  top: 120px;
+  left: 135px;
+  margin: 10px;
+}
+.foodMenuList{
+  /* position: absolute */
+  height: 650px;
+  background-color: #586070;
+}
+.foodList{
+  text-align: left;
+  padding-top: 25px;
+}
+.foodMenuList button {
+  /* display: grid;
+    float: left; */
+    background-color: #586070;
+    border-radius: 15px;
+    height: 50px;    
+    width: 100px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    /* background-image: url(./images/button_left.png); */
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    color: white;
+}
+.priceForItem{
+  display: inline;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 20px;
 }
 .scoreInput{
   width: 50px;
@@ -172,7 +210,7 @@ input[type=text]{
   position:absolute;
   top: -5px;
   width: 100px;
-  right: 10px;
+  right: 5px;
   font-weight: bold;
   background-color: #586070;
   border-radius: 10px;
