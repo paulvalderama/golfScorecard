@@ -216,7 +216,7 @@ input[type=text]{
 .holeLocationBtn{
   position:absolute;
   top: -5px;
-  width: 100px;
+  width: 95px;
   right: 5px;
   font-weight: bold;
   background-color: #586070;
