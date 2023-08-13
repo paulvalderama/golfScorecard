@@ -35,7 +35,7 @@
   border-radius: 10px;
   background-color: #586070;
   color: white;
-  bottom: 250px;
+  bottom: 225px;
   left: 45px;
 }
 .scoreSubmitBtn{
@@ -45,7 +45,7 @@
 .orderFoodBtn{
   position: absolute;
   top: 15px;
-  left: 150px;
+  left: 175px;
   font-weight: bold;
   background-color: #586070;
   border-radius: 10px;
