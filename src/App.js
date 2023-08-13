@@ -116,11 +116,12 @@ let latLonPinPlacement = {
 };
 
 let lat1 = latitude;
-// let lat1 = 37.5860402
+// let lat1 = 37.5829027;
+
 let lat2 = latLonPinPlacement[activeHole][0]
 
 let lon1 = longitude;
-// let lon1 = -122.325313
+// let lon1 = -122.3216949;
 let lon2 = latLonPinPlacement[activeHole][1]
 
 const updateYardsToPin = () => {
