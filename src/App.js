@@ -327,7 +327,9 @@ const updateYardsToPin = () => {
                             <></>
                           }
                       </div>
-                      <button className='orderFoodBtn' onClick={() => {setOrderFood(true); console.log('ordering food')}}>Order Food</button>
+                      <div className='orderFoodBtnContainer'>
+                        <button className='orderFoodBtn' onClick={() => {setOrderFood(true); console.log('ordering food')}}>Order Food</button>
+                      </div>
                     </div>                                     
                 </>)                
                 : 

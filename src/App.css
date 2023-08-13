@@ -41,10 +41,15 @@
 .scoreSubmitBtn{
   display: inline;
 }
+.orderFoodBtnContainer{
+  
+  text-align: center;
+}
 .orderFoodBtn{
   position: absolute;
   top: 25px;
-  left: 150px;
+  /* left: 150px; */
+  text-align: center;
 }
 .closeOrderFoodBtn{
   /* position: absolute; */
