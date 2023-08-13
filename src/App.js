@@ -32,6 +32,9 @@ function App() {
   const [inputNote, setInputNote] = useState('');
   const [note, setNote] = useState({1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: ''});
   const [ad, setAd] = useState(false);
+  const [orderFood, setOrderFood] = useState(false);
+  const [yardsDifference, setYardsDifference] = useState(0);
+
   
   const handleName = (value) => {
     setName(value);
@@ -119,8 +122,13 @@ let lat2 = latLonPinPlacement[activeHole][0]
 let lon1 = longitude;
 // let lon1 = -122.325313
 let lon2 = latLonPinPlacement[activeHole][1]
-let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
 
+const updateYardsToPin = () => {
+  let yards = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
+
+  setYardsDifference(yards);
+
+}
 
 // yardsToPin = yardsToPin;
 
@@ -144,11 +152,20 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
       navigator.geolocation.getCurrentPosition((position) => {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
-      })
+      });
+      updateYardsToPin();
     } else {
       console.log('not available')
     }
   })
+
+  const setYardsToPin = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+    updateYardsToPin();
+  }
 
   const back9 = false;
   console.log(ad, 'what is ad right now')
@@ -224,7 +241,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                         <div style={{paddingBottom: '10px'}}>Yards to Pin</div>
                         {/* <div className='latitudeStyle'>latitude: {latitude}</div> 
                         <div className='longitudeStyle'>Longitude: {longitude}</div>                       */}
-                        <div>{yardsToPin} Yards</div>
+                        <div>{yardsDifference} Yards</div>
                           {/* // <div className='styleHoleNotes'>
                           //   <div className='holeNotesInput'>
                           //       <div className='holeTitleNotes'>Notes</div>
@@ -235,7 +252,7 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                           //       <div>Putt: <input type='text'></input></div> */}
                           <button className='closeHoleLocationBtn' onClick={() => {setActiveLocation(false); setAd(true);}}>X</button>
                           </div>
-                        : <button className='holeLocationBtn' onClick={() => {setActiveLocation(true)}}>Yards to Pin</button>
+                        : <button className='holeLocationBtn' onClick={() => {setYardsToPin(); setActiveLocation(true)}}>Yards to Pin</button>
                       }
                     </div>                    
                       {activeVideo ? 
@@ -245,6 +262,12 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                           </div>
                         :
                           <button className='videoBtn' onClick={() => {setActiveVideo(true)}}>Shot of the Day</button>
+                      }
+                      {orderFood ?
+                          <div>
+                            <button className='closeOrderFoodBtn' onClick={() => {setOrderFood(false); setAd(true);}}>X</button>
+                          </div>
+                          : <button className='orderFoodBtn' onClick={() => {setOrderFood(true)}}>Order Food</button>
                       }
                       {activeScorecard ? 
                         <div className='scorecardTotal'>
@@ -304,7 +327,9 @@ let yardsToPin = (getDistance(lat1, lat2, lon1, lon2) * 1.09361).toFixed(2);
                       </div>
                     </div>                    
                 </>)                
-                : null                  
+                : <>
+                  Order Food
+                </>                  
               }       
               
     </div>

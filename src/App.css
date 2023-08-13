@@ -41,6 +41,11 @@
 .scoreSubmitBtn{
   display: inline;
 }
+.orderFoodBtn{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
 .scoreInput{
   width: 50px;
 }
