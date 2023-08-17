@@ -154,6 +154,15 @@ const updateYardsToPin = () => {
     }, [],
   )
 
+
+  const options = {
+    maximumAge:600000, timeout:5000, enableHighAccuracy: true
+  }
+
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+
   useEffect(() => {
     if("geolocation" in navigator){ 
       console.log('available')
@@ -162,7 +171,7 @@ const updateYardsToPin = () => {
         setLongitude(position.coords.longitude);
 
 
-      }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true}
+      }, error, options
       );
       updateYardsToPin();
     } else {
@@ -174,7 +183,7 @@ const updateYardsToPin = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
-    }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
+    }, error, options);
     updateYardsToPin();
   }
 
