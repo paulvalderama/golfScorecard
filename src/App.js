@@ -174,7 +174,7 @@ const updateYardsToPin = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
-    });
+    }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
     updateYardsToPin();
   }
 
