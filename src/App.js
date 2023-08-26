@@ -150,7 +150,7 @@ const updateYardsToPin = () => {
 
 
   const options = {
-    maximumAge:600000, timeout:5000, enableHighAccuracy: true
+    maximumAge:0, timeout:0, enableHighAccuracy: true
   }
 
   function error(err) {
