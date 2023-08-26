@@ -262,6 +262,8 @@ const updateYardsToPin = () => {
                         {/* <div className='latitudeStyle'>latitude: {latitude}</div> 
                         <div className='longitudeStyle'>Longitude: {longitude}</div>                       */}
                         <div>{yardsDifference} Yards</div>
+                        <div> Latitude: {latitude}</div>
+                        <div> Longitude: {longitude}</div> 
                           {/* // <div className='styleHoleNotes'>
                           //   <div className='holeNotesInput'>
                           //       <div className='holeTitleNotes'>Notes</div>

@@ -269,7 +269,6 @@ input[type=text]{
     text-decoration: none;
 }
 .child{
-  display: inline-block;
   float: left;
 }
 .front9{
