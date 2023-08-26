@@ -137,18 +137,12 @@ const updateYardsToPin = () => {
   setYardsDifference(yards);
 
 }
-
-// yardsToPin = yardsToPin;
-
-
-
   useEffect(() => {
     setScorecard([name, score])
   }, [name, score])
-  console.log(scorecard, 'scorecard set')
+ 
   const activateHole = useCallback(
     (id) => () => {
-      console.log('hole activated', id)
       setActiveHole(parseInt(id));
       setNavigbarHoles(false);
     }, [],
@@ -186,9 +180,7 @@ const updateYardsToPin = () => {
     }, error, options);
     updateYardsToPin();
   }
-
   const back9 = false;
-  console.log(ad, 'what is ad right now')
   return (
     
     <div className="App">
@@ -262,8 +254,8 @@ const updateYardsToPin = () => {
                         {/* <div className='latitudeStyle'>latitude: {latitude}</div> 
                         <div className='longitudeStyle'>Longitude: {longitude}</div>                       */}
                         <div>{yardsDifference} Yards</div>
-                        <div> Latitude: {latitude}</div>
-                        <div> Longitude: {longitude}</div> 
+                        <div style={{fontSize: '8px', marginTop: '5px'}}> Latitude: {latitude}</div>
+                        <div style={{fontSize: '8px'}}> Longitude: {longitude}</div> 
                           {/* // <div className='styleHoleNotes'>
                           //   <div className='holeNotesInput'>
                           //       <div className='holeTitleNotes'>Notes</div>
